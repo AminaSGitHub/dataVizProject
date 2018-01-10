@@ -1,0 +1,133 @@
+            svg {
+              font: 10px sans-serif;
+            }
+            .svg1{
+              width: 1000;
+              height: 1000;
+              position: relative;
+              left: 30px;
+            }
+
+            .line {
+              fill: none;
+              stroke: black;
+              stroke-width: 2px;
+            }
+            .legend {
+              font-size: 16px;
+            }
+             h1 {
+              text-align : center;
+            }
+
+        .province {
+            fill: #000;
+            stroke: #fff;
+            stroke-width: 1px;
+        }
+        .province:hover {
+            opacity: 0.5;
+        }
+        .hidden {
+            display: none;
+        }
+        .hiddenViz {
+          display: none;
+          }
+        .tooltipViz{
+          border: 3px solid   #B0E0E6;
+        }
+
+        div.tooltipViz {
+          color: #222;
+          background-color: #fff;
+          padding: .5em;
+          text-shadow: #f5f5f5 0 1px 0;
+          border-radius: 2px;
+          opacity: 0.9;
+          position: absolute;
+        }
+        .Node{
+              fill: #000;
+              stroke: black;
+              stroke-width: 2px;
+        }
+        .Node:hover{
+              opacity: 0.5;
+        }
+        .hiddenN {
+                display: none;
+        }
+        div.tooltipN {
+                color: #222;
+                background-color: #fff;
+                padding: .5em;
+                text-shadow: #f5f5f5 0 1px 0;
+                border-radius: 2px;
+                opacity: 0.9;
+                position: absolute;
+        }
+
+        div.tooltipp {
+            color: #222;
+            background-color: #fff;
+            padding: .5em;
+            text-shadow: #f5f5f5 0 1px 0;
+            border-radius: 2px;
+            opacity: 0.9;
+            position: absolute;
+        }
+
+         .provinceL {
+            fill: #000;
+            stroke: #fff;
+            stroke-width: 1px;
+        }
+        .provinceL:hover {
+            opacity: 0.5;
+        }
+        div.tooltip {
+              color: #222;
+              background-color: #fff;
+              padding: .5em;
+              text-shadow: #f5f5f5 0 1px 0;
+              border-radius: 2px;
+              opacity: 0.9;
+              position: absolute;
+          }
+          div.tooltipR {
+              color: #222;
+              background-color: #fff;
+              padding: .5em;
+              text-shadow: #f5f5f5 0 1px 0;
+              border-radius: 2px;
+              opacity: 0.9;
+              position: absolute;
+          }
+         div.tooltipL {
+              color: #222;
+              background-color: #fff;
+              padding: .5em;
+              text-shadow: #f5f5f5 0 1px 0;
+              border-radius: 2px;
+              opacity: 0.9;
+              position: absolute;
+          }
+          .provinceR {
+              fill: #000;
+              stroke: #fff;
+              stroke-width: 1px;
+          }
+          .provinceR:hover {
+              opacity: 0.5;
+            }
+        .divLeft {
+
+          display:block;
+          float: right;
+        }
+        .divRight {
+          width:100px;
+          display:block;
+          float: right;
+        }

@@ -1,17 +1,1469 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>TER flows comparison</title>
+<html lang="en">
 
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SNCF Exploration</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- own CSS -->
+    <link href="css/indexStyle.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/creative.min.css" rel="stylesheet">
+
+    <!-- D3JS -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="js/firstPart.js"></script>
 
   </head>
-  <!-- START BODY -->
-  <body class="nomobile">
-      <h1>Comparison of the quality of TER flows</h1>
-      <p>In construction</p>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">TER Exploration</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">Contexte</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#first_vizu">Comparaison globale</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#second_vizu">Comparaison ciblée</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#Tendances">Tendances</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#services">Conclusion</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="masthead text-center text-white d-flex">
+      <div class="container my-auto">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <h1 class="text-uppercase">
+              <strong>Bienvenue sur notre site</strong>
+            </h1>
+            <hr>
+          </div>
+          <div class="col-lg-8 mx-auto">
+            <p class="text-faded mb-5" style="color:white">Ce site est un outil de comparaison et de visualisation de données de trains TER en France sur les 5 dernières années.</p>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Ce que tu peux faire sur ce site </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="bg-primary" id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading text-white"><!--Voulez-vous en savoir plus au sujet de la qualité du réseau des trains TER en France ?-->
+            Vous voulez prendre le TER et vous voulez savoir si c'est une bonne idée ou pas? <br>C'est par ici que ça ce passe!</h2>
+            <hr class="light my-4">
+            <p class="text-faded mb-4">Nous comparons pour vous la qualité des flux de trains TER entre les 20 conventions "Régions-SNCF" entre 2013 et 2017.</p>
+             <p>Sur notre site vous pouvez :</p>
+            
+              <ul style="text-align: left;">
+                    <li>Choisir un mois entre 2013 et 2017 et trouver la ville où il y'a le moins de retard.</li>
+                    <li>Comparer l'évolution en retard de la même région sur deux années successives ou 5 ans après.</li>
+                    <li>Trouver la région ou il y'a de moins en moins de retard.</li>
+                    <li>Trouver la période idéale pour assurer un bon voyage sans reatrd et sans complications.</li>
+                    <li>Trouver les villes ayant plus de retard sur le réseau SNCF.</li>
+                  </ul>
+            <a class="btn btn-light btn-xl js-scroll-trigger" href="#first_vizu">Commencer à visualiser!</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="first_vizu" > 
+      <div class="container-fluid p-0" style="margin-top: 0">
+
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading">Comparaison de la qualité des flux de trains en France.</h2>
+            <hr class="my-4">
+            <p>Ici tu peux voir le taux de retard moyen par région et comparer ces taux entre régions ou par rapport à la moyenne nationale !<br>
+                Tu peux basculer entre la carte et un cartogramme dorling pour mieux apprécier la variation des taux de retard !</p>  
+            <div class="svg1">
+             <!-- ********************************************** BEGIN first_vizu ********************************************** -->
+            <div>
+              <div>
+               <span >
+                <input id="sliderYear" type="range" class="divLeft" value="1" min="1" max="5" step="1" />
+               </span>
+                <span>
+                <span id="year" class="divRight" >year </span>
+              </span>
+              </div>
+              <div>
+              <span class="divLeft">
+                <input id="slider" type="range"  value="1" min="1" max="12" step="1" />
+               </span>
+              <span class="divRight">
+                <span id="month"> month </span>
+              </span>
+              </div>
+              <div>
+                <form>
+                  <label><input type="radio" name="dataset" id="dataset" value="Nœuds"> Nœuds</label>
+                  <label><input type="radio" name="dataset" id="dataset" value="Carte"> Carte</label>
+                </form>  
+              </div>
+             </div> 
+                <script> 
+                      d3.select("input[value=\"Nœuds\"]").property("checked", true);
+
+                      var width = 700,
+                          height = 580;
+
+                     var svg1 = d3.select("body").selectAll("div.svg1")
+                        .append( "svg" )
+                        .attr( "width", width+300 )
+                        .attr( "height", height );
+                      
+                      var carte;
+                      var padding = 3;
+                      
+                      // French map 
+                      var projection = d3.geoConicConformal().center([2.454071, 46.279229]).scale(2500);//.translate([300,300]);
+                     
+                      
+                      // On definie une echelle de couleur
+                      var color = d3.scaleQuantize()  
+                            .range(["rgb(213,239,204)", 
+                                    "rgb(169,221,160)", 
+                                    "rgb(94,186,97)", 
+                                    "rgb(42,141,71)", 
+                                    "rgb(0,91,36)"]);
+                      var nbrColors = 5;
+                      var minG = 0 , maxG = 0; // Used for legend
+                       /*Area containing the name and the value of each region*/
+                      var tooltipp = d3.select('div.svg1')
+                                      .append('div')
+                                      .attr('class', 'hidden tooltipp');
+                       /*Area containing the histogram */               
+                     var tooltipViz = d3.select('div.svg1')
+                        .append('div')
+                        .attr('class', 'hiddenViz tooltipViz');               
+                             
+                      var path = d3.geoPath() // d3.geo.path avec d3 version 3
+                                   .projection(projection);
+
+                      
+                     d3.csv("TER_France2013_2017.csv", function(data) {
+                       
+                           var jsonF;
+                           var listDates = Object.keys(data[0]);
+                           var listYears  = []; // Will contain [2013,2014,2015,2016]
+                           var listMonths  = []; // Will contain [Janvier,...,Decembre]
+                           var currentYear = 1;  //"2013";
+                           var currentMonth = 1; //"Janvier";
+
+                            /*Begin legend*/
+                            var element;
+                            minG = parseFloat(Object.values(data[0])[1]);
+                            maxG = parseFloat(Object.values(data[0])[1]);
+                             for (var i = 0; i < data.length; i++) {
+                               for(var j = 1; j < listDates.length-4; j++){
+                                 //console.log("ELEMENT : ===> data : "+Object.values(data[i])[j]);
+                                element = parseFloat(Object.values(data[i])[j]);
+                                if (element < minG ){
+                                  minG = element;
+                                } 
+                                if (element > maxG ){
+                                  maxG = element;
+                                }
+                               }
+                             }
+                             pas = (maxG - minG)/nbrColors;
+                              drawLegende(minG, maxG,pas);
+                            /*End legend*/
+                             var radius = d3.scaleSqrt()
+                                            .domain([0,parseFloat(maxG)])
+                                            .range([0, 35]);
+                           for(var m = 1; m< listDates.length; m++){
+                             var datee = listDates[m].split(" ");
+                              if (listYears.findIndex(p => p == datee[1]) === (-1)) {
+                                  listYears.push(datee[1]);
+                              }
+                              if (listMonths.findIndex(p => p == datee[0]) === (-1)) {
+                                if(datee[0] != "Somme2013" && datee[0] != "Somme2014" && datee[0] != "Somme2015" && datee[0] != "Somme2016" && datee[0] != "Somme2017"){
+                                  listMonths.push(datee[0]);
+                                }
+                              }
+                             
+                           }
+                          d3.json("regions.json", function(json) {
+                            // first value for slider
+                              var first = listDates[1].split(" ");
+                            // first value for sliderYear
+                              var firstYear = listYears[0];
+                              var firstMonth = listMonths[0];
+                              //d3.select('#month').html(first[0]);
+                              d3.select('#month').html(firstMonth);
+                              d3.select('#year').html(firstYear);
+                              // update the month in slider
+                              d3.select("#slider").on("input", function() {
+                                //currentMonth = listMonths[this.value-1];
+                                currentMonth = +this.value; 
+                                //console.log("currentMonth" + currentMonth);
+                                updateViz(+this.value);
+                              });
+                            
+                              d3.select("#sliderYear").on("input", function() { 
+                               //currentYear = listYears[this.value-1];
+                                currentYear = +this.value;
+                               // console.log("currentYear" + currentYear);
+                                updateViz2(+this.value);
+                              });
+                            
+                          //On fusionne les donnees avec le GeoJSON des regions
+                          for (var i = 0; i < data.length; i++) {
+                            // Find the name of the region in csv file
+                            var dataState = data[i].region;
+                            for (var j = 0; j< json.features.length; j++){
+                              // Find the name of the region in json file
+                              var jsonState = json.features[j].properties.nom;//
+                              if (dataState == jsonState) {
+                                json.features[j].properties.tab =  Object.values(data[i]);
+                                //stop because result found
+                                 break;
+                              }
+                            }
+                          }
+                           
+                   
+
+                          
+                          jsonF = json;       
+                          var currentViz =1;
+                        var valCurrentViz = "Nœuds";    
+                        d3.selectAll("#dataset")
+                        .on("change", selectDataset);
+                            
+                          function selectDataset()
+                          {
+                            valCurrentViz = this.value;
+                            if (valCurrentViz == "Nœuds")
+                            {
+                              drawNodes(currentMonth, currentYear);
+                            }
+                            else if (valCurrentViz == "Carte")
+                            {
+                              drawMap(currentMonth, currentYear);
+                            }
+                          } 
+                        if(valCurrentViz == "Nœuds"){
+                            drawNodes(currentMonth, currentYear);
+                          }else{
+                             drawMap(currentMonth, currentYear);
+                          }   
+ 
+                        
+                        //update elements 
+                        function updateViz(val){
+                           d3.select('#month').html(listMonths[val-1]);
+                             
+                               if(valCurrentViz == "Nœuds"){
+                                drawNodes(currentMonth, currentYear);
+                              }else{
+                                drawMap(currentMonth, currentYear);
+                              } 
+                        };
+                        
+                        function updateViz2(valY){ 
+                          d3.select('#year').html(listYears[valY-1]);
+   
+                               if(valCurrentViz == "Nœuds"){
+                                drawNodes(currentMonth, currentYear);
+                              }else{
+                                drawMap(currentMonth, currentYear);
+                              }                             
+                        };
+                             
+                        // Draw the map
+                        function drawMap(monthBis, yearBis){
+                          svg1.selectAll("circle").remove();
+                          var nbr;
+                          var currentDate = 12*(yearBis-1)+monthBis ;
+                          /**********************************udes for the Histogram  ************************************/
+                          var colorH = d3.scaleOrdinal(d3.schemeCategory2);
+                          var moyFrance = 0;
+                          var valRegion;
+                          var nbrReg = 0;
+                            for (var i = 0; i < data.length; i++) {
+                                   if(Object.values(data[i])[currentDate]){
+                                     moyFrance+= parseFloat(Object.values(data[i])[currentDate]);
+                                     nbrReg++;
+                                     //console.log("REGION "+Object.values(data[i])[0] +"   "+ nbrReg);
+                                   }      
+                                 }
+                          moyFrance = parseFloat(moyFrance/nbrReg).toFixed(2);
+                          console.log("France "+moyFrance);
+                         /************************************************************************/
+                          svg1.selectAll("path")
+                            .data(jsonF.features)
+                            .enter()
+                            .append("path")
+                            .attr("d", path);
+                          //Set input domain for color scale
+                            color.domain([ minG,maxG]);
+                                
+                          carte = svg1.selectAll("path")
+                             .data(jsonF.features);
+                          carte
+                            .on('mousemove', function(d) {
+                                if(d.properties.tab == undefined || d.properties.tab == "NaN"){
+                                    nbr = "undefined";
+                                }else { 
+                                    nbr = d.properties.tab[currentDate]; 
+                                  }
+                                var mouse = d3.mouse(svg1.node()).map(function(d) {
+                                   return parseInt(d);
+                                });
+                            
+                                tooltipp.classed('hidden', false)
+                                       .attr('style', 'left:' + (mouse[0] + 15) +
+                                               'px; top:' + (mouse[1] - 35) + 'px')
+                                       .html(d.properties.nom + ":" + parseFloat(nbr).toFixed(2)+ " %");
+                                /*Used for histogram*/
+                                var dataHist ;
+                                if(isNaN(parseFloat(nbr).toFixed(2))){
+                                      valRegion = 0 ;
+                                }else{
+                                       valRegion = parseFloat(nbr).toFixed(2);
+                                };
+                                dataHist = [moyFrance, valRegion];
+                                //console.log("VALUES : "+ dataHist);
+                               tooltipViz.classed('hiddenViz', false)
+                                         .attr('style', 'left:' +5+'px; top:' +150 + 'px')
+                                         .html("");
+                               var svgHisto = d3.select( "div.tooltipViz" )
+                                               .append( "svg" )
+                                               .attr( "width", 200 )
+                                               .attr( "height", 200 );
+                              var g = svgHisto.append("g").attr("transform", "translate(100, 0)");
+                              var x = d3.scaleLinear().range([0, 200]).domain([0, dataHist.length]);
+                              var y = d3.scaleLinear().range([0, 170]).domain([0, d3.max(dataHist)]);
+                              g.selectAll("text").data(dataHist).enter().append("text")
+                               .text(function(d,i) { if(i==0){return "National "+d+"%   ";}else{return "Regional "+d+"%";} })
+                               .attr("y", 200)
+                               .attr("x", function(d, i) { return x(i)-50; })
+                               .style("font-size", 12)
+                               .style("text-anchor", "middle")
+                               .style("font-family", "monospace")
+                               .style("fill",function(d,i) { if(i==0){return "#f05f40";}else{return "#868e96";} })
+                               .style("Font-Weight","Bold");
+         
+                              g.selectAll("rect").data(dataHist).enter().append("rect")
+                               .attr("x", function(d, i) { return x(i)-100; })
+                               .attr("y", function(d) { return 170-y(d); })
+                               .attr("height", function(d) { return y(d); })
+                               .attr("width", 200 / dataHist.length - 50 )
+                               .style("fill", function(d, i){ if(i==0) {return "#f05f40";}else {return"#868e96";}});
+
+                            // Add axis X
+                            svgHisto.append("g")
+                                    .attr("transform", "translate(0," + 170 + ")")
+                                    .call(d3.axisBottom(x));
+
+                            // Add the Y Axis
+                            svgHisto.append("g")
+                                    .call(d3.axisLeft(y));
+                                /********************/       
+                                        
+                                })
+                            .on('mouseout', function() {
+                                tooltipp.classed('hidden', true);
+                                tooltipViz.classed('hiddenViz',true);   
+                                });
+                          
+                          //code in case of update of the map / change of month 
+                          carte 
+                           .attr('class', function(d) {
+                                  return 'province ' + d.properties.code;
+                               })
+                           .attr('d', path)
+                           .style("fill", function(d) {
+                                  // get value found above
+                                  var tab = d.properties.tab;
+                                  if (tab && tab[currentDate] != "") {
+                                      return color(tab[currentDate]);
+                                  } else { 
+                                      // if no value then color with Grey
+                                      return "#ccc";
+                                  }
+                                  
+                                  
+                              });
+                         
+                                    
+                        }; // End of drawMap//
+
+                      function drawNodes(monthBis, yearBis){
+                        svg1.selectAll('path').remove(); 
+                        svg1.selectAll('circle').remove(); 
+                      
+                        var currentDate = 12*(yearBis-1)+monthBis ;
+                         /**********************************uses for the circles legend  ************************************/
+                          var colorH = d3.scaleOrdinal(d3.schemeCategory2);
+                          var moyFrance = 0;
+                          var valRegion;
+                          var nbrReg = 0;
+                            for (var i = 0; i < data.length; i++) {
+                                   if(Object.values(data[i])[currentDate]){
+                                     moyFrance+= parseFloat(Object.values(data[i])[currentDate]);
+                                     nbrReg++;
+                                     console.log("REGION "+Object.values(data[i])[0] +"   "+ nbrReg);
+                                   }      
+                                 }
+                            moyFrance = parseFloat(moyFrance/nbrReg).toFixed(2);
+                          
+                         /************************************************************************/
+                          var nbr;
+                          var nodes = jsonF.features
+                              .map(function(d) {
+                                if (d.properties.tab == undefined){
+                                  nbr="undefined";
+                                }else {
+                                  nbr=d.properties.tab[currentDate];
+                                }
+                                if(d.geometry.coordinates[0][0].length === 2){
+                                  
+                                    var point = projection(d.geometry.coordinates[0][0]),
+                                    value = nbr; 
+                                }else{
+                                  var point = projection(d.geometry.coordinates[0][0][0]),
+                                    value = nbr; 
+                                }
+                                
+                                
+                             var rayon;
+                             if(nbr=="undefined" || !(d.properties.tab[currentDate])){
+                               rayon = 2;
+                             }else { 
+                               rayon = value;
+                             }
+                              return {
+
+                                    x: point[0], y: point[1],
+                                    x0: point[0], y0: point[1],
+                                    r: radius(rayon) ,
+                                    value: value,
+                                    region: d.properties.nom
+                                  };
+                                });
+                        var force = d3.forceSimulation(nodes)
+                          .force('charge',d3.forceManyBody())
+                          .force('x', d3.forceX(width/2).strength(0.005))
+                          .force('y', d3.forceY(height/2).strength(0.005));
+                        var tooltipN = d3.select('div.svg1')
+                                        .append('div')
+                                        .attr('class', 'hiddenN tooltipN');
+
+
+                       var node = svg1.selectAll("circle")
+                              .data(nodes)
+                              .enter().append("circle")
+                              .attr("r", function(d) { return d.r+5; })
+                              .attr('class', function(d) {
+                                return 'Node ' + d.code;
+                               })
+                              .on("mouseover", function(d){
+                                  var mouse = d3.mouse(svg1.node()).map(function(d) {
+                                         return parseInt(d);
+                                      });
+                                   tooltipN.classed('hiddenN', false)
+                                          .attr('style', 'left:' + (mouse[0] + 15) +
+                                                'px; top:' + (mouse[1] - 35) + 'px')
+                                          .html(d.region + " : "+parseFloat(d.value).toFixed(2) + " %");
+
+
+
+                                           /*Used for histogram*/
+                                           var dataHist ;
+                                            if(isNaN(parseFloat(d.value).toFixed(2))){
+                                              valRegion = 0 ;
+                                            }else{
+                                             valRegion = parseFloat(d.value).toFixed(2);
+                                            };
+                                           dataCercles = [moyFrance, valRegion];
+                                          //console.log("VALUES : "+ dataCercles);
+                               tooltipViz.classed('hiddenViz', false)
+                                         .attr('style', 'left:' +1+'px; top:' +200 + 'px')
+                                         .html("");
+                               var svgCirclesLegende = d3.select( "div.tooltipViz" )
+                                               .append( "svg" )
+                                               .attr( "width", 210 )
+                                               .attr( "height", 150 );
+                              
+                                                                   
+                              var g = svgCirclesLegende.append("g").attr("transform", "translate(100, 0)");
+                              var x = d3.scaleLinear().range([0, 210]).domain([0, 2]);
+                               var y = d3.scaleLinear().range([0, 170]).domain([0, radius(maxG)]);
+                                var circle= svgCirclesLegende.append("circle") 
+                                          .attr("cx", 100).attr("cy",50)
+                                          .attr("r", d.r+5)
+                                          .attr("fill", "#868e96");  
+                               var circleFrance= svgCirclesLegende.append("circle") 
+                                          .attr("cx", (d.r)*2).attr("cy",50)
+                                          .attr("r", radius(moyFrance))
+                                          .attr("fill", "#f05f40"); 
+                              g.selectAll("text").data(dataCercles).enter().append("text")
+                               .text(function(d,i) { if(i==0){return "National "+d+"%/";}else{return "Regional "+d+"%";} })
+                               .attr("y", 150)
+                               .attr("x", function(d, i) { return x(i)-40; })
+                               .style("font-size", 12)
+                               .style("text-anchor", "middle")
+                               .style("font-family", "monospace")
+                               .style("fill",function(d,i) { if(i==0){return "#f05f40";}else{return "#868e96";} })
+                               .style("Font-Weight","Bold")
+                               .style("font-size", "12px");
+         
+                        
+
+                              })
+                              .on('mouseout', function() {
+                                   tooltipN.classed('hiddenN', true);
+                                   tooltipViz.classed('hiddenViz',true);  
+                              })
+                        
+                             .style("fill", function(d) {
+                                    // get value found above
+                                var tab = d.value;
+                                    if (tab && d.value != "undefined") {
+                                        return color(d.value);
+                                    } else { 
+                                        // if no value then color with Grey
+                                        return "#ccc";
+                                    }
+
+
+                                });
+                       
+                           force
+                              .nodes(nodes)
+                              .on("tick", tick);
+                              //.restart(); ///
+                        function tick(e) {
+
+                           //console.log( d3.select(this));
+                            node.each(gravity(force.alpha() * .1))
+                                .each(collide(.5))
+                                .attr("cx", function(d) { return d.x+150; })
+                                .attr("cy", function(d) { return d.y; });
+                          }
+
+
+                          function gravity(k) {
+                            return function(d) {
+                              d.x += (d.x0 - d.x) * k;
+                              d.y += (d.y0 - d.y) * k;
+                            };
+                          }
+
+                          function collide(k) {
+                            var q = d3.quadtree().addAll(nodes);
+                            return function(node) {
+                              var nr = node.r + padding,
+                                  nx1 = node.x - nr,
+                                  nx2 = node.x + nr,
+                                  ny1 = node.y - nr,
+                                  ny2 = node.y + nr;
+                              q.visit(function(quad, x1, y1, x2, y2) {
+                                if (quad.point && (quad.point !== node)) {
+                                  var x = node.x - quad.point.x,
+                                      y = node.y - quad.point.y,
+                                      l = x * x + y * y,
+                                      r = nr + quad.point.r;
+                                  if (l < r * r) {
+                                    l = ((l = Math.sqrt(l)) - r) / l * k;
+                                    node.x -= x *= l;
+                                    node.y -= y *= l;
+                                    quad.point.x += x;
+                                    quad.point.y += y;
+                                  }
+                                }
+                                return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+                              });
+                            };
+                          }
+                  
+                      };// End of "draw nodes"      
+              }); // End of "regions.json"    
+                        /*Function to add legende */
+                     function drawLegende(min, max,pas){
+                            var c = color;
+                            var limites = [];
+                            c.domain([min,max]);
+                            //console.log("limites Avant : "+ limites);
+                            var bool;
+                            for(var it=min; it<max; it = it+pas){
+                              limites.push(it);
+                            }
+                            //console.log("limites Apres : "+ limites);//
+                            var legend = svg1.selectAll(".legend")
+                                            .data(limites)
+                                            .enter()
+                                            .append("g")
+                                            .attr("class", "legend")
+                                            .attr("transform", function(d, i) {
+                                                return "translate(0," + i * 20 + ")"; 
+                                            });
+
+                            legend.append("rect")
+                                  .attr("x", 200)
+                                  .attr("width", 18)
+                                  .attr("height", 18)
+                                  .style("fill", function(d) { return color(d); });
+
+                            legend.append("text")
+                                  .attr("x", 20)//194)
+                                  .attr("y", 500)//9)
+                                  .attr("dy", ".35em")
+                                  .style("text-anchor", "end")
+                                  .text(function(d) { var dPas = d+ pas; return parseFloat(d).toFixed(2) + " %-" + parseFloat(dPas).toFixed(2)+ " %" ; }); 
+                        } // End of Drawinf legend
+
+                     }); // End of "d3.csv..
+
+                   
+
+                    </script>
+             <!-- ********************************************** END first_vizu ********************************************** -->
+             <a class="btn btn-primary btn-xl js-scroll-trigger" href="#second_vizu">Comparaison ciblée</a>
+           </div>
+          </div>
+      </div>
+    </section>
+ <!-- ********************************************** BEGIN second_vizu ********************************************** -->
+    <section id="second_vizu"> 
+      <div class="container">
+
+           <h2 class="section-heading text-center">Comparons</h2>
+            <hr class="my-4">
+            <p class="text-center">Maintenat que tu as gloablement vu quelles régions font le moins de retard. Tu peux comparer l’évolution de ce taux de retard pour une même région sur deux différentes périodes de temps ou entre deux régions différentes! <br>
+            N’hésite pas à cliquer sur les régions pour maintenir les étiquettes affichées !</p>
+        <div class="row">
+           <!-- 1st svg -->
+            <div class="col-sm-6 mx-auto text-center ">
+          
+              <div class="svg2_1">
+                <div>
+                     <span >
+                      <input id="sliderYearL" type="range" class="divLeft" value="1" min="1" max="5" step="1" />
+                     </span>
+                      <span>
+                        <span id="yearL" class="divRight" >year </span>
+                      </span>
+                </div>
+                <div>
+                    <span class="divLeft">
+                      <input id="sliderL" type="range"  value="1" min="1" max="12" step="1" />
+                    </span>
+                    <span class="divRight">
+                      <span id="monthL"> month </span>
+                    </span>
+                </div>
+                 
+             </div> 
+            </div>
+
+            <!-- 2nd svg -->
+            <div class="col-sm-6 mx-auto text-center">
+              <div class="svg2_2">
+                <div>
+                     <span >
+                      <input id="sliderYearR" type="range" class="divLeft" value="1" min="1" max="5" step="1" />
+                     </span>
+                      <span>
+                        <span id="yearR" class="divRight" >year </span>
+                      </span>
+                </div>
+                <div>
+                    <span class="divLeft">
+                      <input id="sliderR" type="range"  value="1" min="1" max="12" step="1" />
+                    </span>
+                    <span class="divRight">
+                      <span id="monthR"> month </span>
+                    </span>
+                </div>  
+
+
+
+             </div>
+            </div>
+
+        </div>  
+      </div> 
+       <script>
+                     /***************************** FIRST *******************************/   
+                      var width = 700,
+                          height = 580;
+
+                      var svg = d3.select( "body" ).selectAll("div.svg2_1")
+                        .append( "svg" )
+                        .attr( "width", width +300)
+                        .attr( "height", height );
+                      var carteL;
+                      var minG,maxG,pas;
+                      // French map 
+                      var projection = d3.geoConicConformal().center([2.454071, 46.279229]).scale(2500)
+                      .translate([300,300]);
+                     
+                      
+                      // On definie une echelle de couleur
+                      var color = d3.scaleQuantize()  
+                            .range(["rgb(213,239,204)", 
+                                    "rgb(169,221,160)", 
+                                    "rgb(94,186,97)", 
+                                    "rgb(42,141,71)", 
+                                    "rgb(0,91,36)"]);
+                      var nbrColors =5;
+                       /*Area containing the name and the value of each region*/
+                      var tooltipL = d3.select('div.svg2_1')
+                                      .append('div')
+                                      .attr('class', 'hiddenL tooltipL');
+                             
+                      var path2_1 = d3.geoPath() // d3.geo.path avec d3 version 3
+                                   .projection(projection);
+
+                     d3.csv("TER_France2013_2017.csv", function(data) {
+                           var jsonF;
+                           var listDates = Object.keys(data[0]);
+                           var listYears  = []; // Will contain [2013,2014,2015,2016]
+                           var listMonths  = []; // Will contain [Janvier,...,Decembre]
+                           var currentYear = 1;  //"2013";
+                           var currentMonth = 1; //"Janvier";
+                            /*Begin legend*/
+                           var element;
+                            minG = parseFloat(Object.values(data[0])[1]);
+                            maxG = parseFloat(Object.values(data[0])[1]);
+                             for (var i = 0; i < data.length; i++) {
+                               for(var j = 1; j < listDates.length-4; j++){
+                                element = parseFloat(Object.values(data[i])[j]);
+                                if (element < minG ){
+                                  minG = element;
+                                } 
+                                if (element > maxG ){
+                                  maxG = element;
+                                }
+                               }
+                             }
+                             pas = (maxG - minG)/nbrColors;
+                            drawLegende2(minG, maxG,pas);
+                            /*End legend*/
+                       
+                           for(var m = 1; m< listDates.length; m++){
+                             var datee = listDates[m].split(" ");
+                              //console.log("Date ====> "+ datee[1]);//listMonths
+                             // console.log("Date ====> "+ listMonths)
+                              if (listYears.findIndex(p => p == datee[1]) === (-1)) {
+                                  listYears.push(datee[1]);
+                              }
+                              if (listMonths.findIndex(p => p == datee[0]) === (-1)) {
+                                if(datee[0] != "Somme2013" && datee[0] != "Somme2014" && datee[0] != "Somme2015" && datee[0] != "Somme2016" && datee[0] != "Somme2017"){
+                                  listMonths.push(datee[0]);
+                                }
+                              }
+                           }
+                          
+                          d3.json("regions.json", function(json) {
+                            // first value for slider
+                              var first = listDates[1].split(" ");
+                            // first value for sliderYear
+                              var firstYear = listYears[0];
+                              var firstMonth = listMonths[0];
+                              //d3.select('#month').html(first[0]);
+                              d3.select('#monthL').html(firstMonth);
+                              d3.select('#yearL').html(firstYear);
+                              // update the month in slider
+                              d3.select("#sliderL").on("input", function() {
+                                //currentMonth = listMonths[this.value-1];
+                                currentMonth = +this.value; 
+                                //console.log("currentMonth" + currentMonth);
+                                updateViz(+this.value);
+                              });
+                            
+                              d3.select("#sliderYearL").on("input", function() { 
+                               //currentYear = listYears[this.value-1];
+                                currentYear = +this.value;
+                               // console.log("currentYear" + currentYear);
+                                updateViz2(+this.value);
+                              });
+                            
+                          //On fusionne les donnees avec le GeoJSON des regions
+                          for (var i = 0; i < data.length; i++) {
+                            // Find the name of the region in csv file
+                            var dataState = data[i].region;
+                            //console.log("DataState : " + dataState )
+                            for (var j = 0; j< json.features.length; j++){
+                              // Find the name of the region in json file
+                              var jsonState = json.features[j].properties.nom;//
+                              if (dataState == jsonState) {
+                                json.features[j].properties.tab =  Object.values(data[i]);
+                                //console.log(json.features[j].properties.tab);
+                                //stop because result found
+                                 break;
+                              }
+                            }
+                          }
+                           
+                   
+                          svg.selectAll("path")
+                            .data(json.features)
+                            .enter()
+                            .append("path")
+                            .attr("d", path);
+                          
+                          jsonF = json; 
+                          drawMap(currentMonth, currentYear);  
+                          }); // End of "regions.json"
+                        
+                        //update elements 
+                        function updateViz(val){
+                          d3.select('#monthL').html(listMonths[val-1]);
+                          drawMap(currentMonth, currentYear); 
+                        };
+                        
+                        function updateViz2(valY){
+                          d3.select('#yearL').html(listYears[valY-1]);
+                          drawMap(currentMonth, currentYear); 
+                        };
+                             
+                        // Draw the map
+                        function drawMap(monthBis, yearBis){
+                          var nbr;
+                          
+                          var currentDate = 12*(yearBis-1)+monthBis ;
+                          //fevrier 2017 => 2017 = 5 fevrier 2 ====> 12*(yearBis-1)+monthBis
+                          //console.log("cu rrentDate ==========> " + currentDate);
+                          
+                          //Set input domain for color scale
+                            color.domain([ minG,maxG]);
+                         
+                          carteL = svg.selectAll("path")
+                             .data(jsonF.features);
+                          carteL
+                            .on('mousemove', function(d) {
+                                if(d.properties.tab == undefined){
+                                    nbr = "undefined";
+                                }else { 
+                                    nbr = d.properties.tab[currentDate]; 
+                                  }
+                                var mouse = d3.mouse(svg.node()).map(function(d) {
+                                   return parseInt(d);
+                                });
+                              //console.log(" 1 : =>" + mouse[0]);
+                                tooltipL.classed('hiddenL', false)
+                                       .attr('style', 'left:' + (mouse[0] + 15) +
+                                               'px; top:' + (mouse[1] - 35) + 'px')
+                                       .html(d.properties.nom + ":" + parseFloat(nbr).toFixed(2)+ " %");
+                                        
+                                })
+                            .on('mouseout', function() {
+                                tooltipL.classed('hiddenL', true);
+                                });
+                          
+                          //code in case of update of the map / change of month 
+                          carteL
+                           .attr('class', function(d) {
+                                  return 'provinceL ' + d.properties.code;
+                               })
+                           .attr('d', path2_1)
+                           .style("fill", function(d) {
+                                  // get value found above
+                                  var tab = d.properties.tab;
+                                  if (tab && tab[currentDate] != "") {
+                                    // console.log("tabbbbb ==>" + tab[currentDate]);
+                                      return color(tab[currentDate]);
+                                  } else { 
+                                      // if no value then color with Grey
+                                      return "#ccc";
+                                  }
+                                  
+                                  
+                              });
+                          
+                          //fist time of coloring the map
+                          carteL.selectAll("path")
+                              .enter()
+                              .data(jsonF.features)
+                              .append("path")
+                              .attr("class", "enter")
+                              .attr("d", path)
+                              .style("fill", function(d) {
+                                    // get value found above
+                                    var tab = d.properties.tab;
+                                    // console.log("tabbbb ==>" + tab[currentDate]);
+                                    if (tab && tab[currentDate] != "") {  
+                                        return color(tab[currentDate]);
+                                    } else { 
+                                        // if no value then color with Grey 
+                                        return "#ccc";
+                                    }
+                                });
+                          
+                        
+
+
+                        }; // End of drawMap//
+                       
+                        /*Function to add legende */
+                        function drawLegende2(min, max,pas){
+                            var c = color;
+                            var limites = [];
+                            c.domain([min,max]);
+                            //console.log("limites Avant : "+ limites);
+                            var bool;
+                            for(var it=min; it<max; it = it+pas){
+                              limites.push(it);
+                            }
+                            //console.log("limites Apres : "+ limites);//
+                            var legend = svg.selectAll(".legend")
+                                            .data(limites)
+                                            .enter()
+                                            .append("g")
+                                            .attr("class", "legend")
+                                            .attr("transform", function(d, i) {
+                                                return "translate(0," + i * 20 + ")"; 
+                                            });
+
+                            legend.append("rect")
+                                  .attr("x", width - 100)
+                                  .attr("width", 18)
+                                  .attr("height", 18)
+                                  .style("fill", function(d) { return color(d); });
+
+                            legend.append("text")
+                                  .attr("x", width - 120)
+                                  .attr("y", 9)
+                                  .attr("dy", ".35em")
+                                  .style("text-anchor", "end")
+                                  .text(function(d) { var dPas = d+ pas; return parseFloat(d).toFixed(2) + " %-" + parseFloat(dPas).toFixed(2)+ " %" ; }); 
+                          
+                        } 
+
+                       
+                       
+                       
+
+
+                     }); // End of "d3.csv..
+                   /***************************** 2nd *******************************/
+                  
+                    var svgR = d3.select( "body" ).selectAll("div.svg2_2")
+                      .append( "svg" )
+                      .attr( "width", width+100)
+                      .attr( "height", height-100 )
+                      .attr("style", "margin-top:" + 50 +"px");
+                    var carteR;
+                    
+                    // French map 
+                    var projectionR = d3.geoConicConformal().center([2.454071,46.279229]).scale(2500).translate([300,300]);
+                   
+                     /*Area containing the name and the value of each region*/
+                    var tooltipR = d3.select('div.svg2_2')
+                                    .append('div')
+                                    .attr('class', 'hiddenR tooltipR');
+                           
+                    var pathR = d3.geoPath() // d3.geo.path avec d3 version 3
+                                 .projection(projectionR);
+
+                   d3.csv("TER_France2013_2017.csv", function(dataR) {
+                         var jsonFR;
+                         var listDatesR = Object.keys(dataR[0]);
+                         var listYearsR  = []; // Will contain [2013,2014,2015,2016]
+                         var listMonthsR  = []; // Will contain [Janvier,...,Decembre]
+                         var currentYearR = 1;  //"2013";
+                         var currentMonthR = 1; //"Janvier";
+                         for(var m = 1; m< listDatesR.length; m++){
+                           var dateeR = listDatesR[m].split(" ");
+                            if (listYearsR.findIndex(p => p == dateeR[1]) === (-1)) {
+                                listYearsR.push(dateeR[1]);
+                            }
+                            if (listMonthsR.findIndex(p => p == dateeR[0]) === (-1)) {
+                              if(dateeR[0] != "Somme2013" && dateeR[0] != "Somme2014" && dateeR[0] != "Somme2015" && dateeR[0] != "Somme2016" && dateeR[0] != "Somme2017"){
+                                listMonthsR.push(dateeR[0]);
+                              }
+                            }
+                         }
+                      
+                        
+                        d3.json("regions.json", function(jsonR) {
+                          // first value for slider
+                            var firstR = listDatesR[1].split(" ");
+                          // first value for sliderYear
+                            var firstYearR = listYearsR[0];
+                            var firstMonthR = listMonthsR[0];
+                            //d3.select('#month').html(first[0]);
+                            d3.select('#monthR').html(firstMonthR);
+                            d3.select('#yearR').html(firstYearR);
+                            // update the month in slider
+                            d3.select("#sliderR").on("input", function() {
+                              //currentMonth = listMonths[this.value-1];
+                              currentMonthR = +this.value; 
+                              //console.log("currentMonth" + currentMonth);
+                              updateVizR(+this.value);
+                            });
+                          
+                            d3.select("#sliderYearR").on("input", function() { 
+                             //currentYear = listYears[this.value-1];
+                              currentYearR = +this.value;
+                             // console.log("currentYear" + currentYear);
+                              updateViz2R(+this.value);
+                            });
+                          
+                        //On fusionne les donnees avec le GeoJSON des regions
+                        for (var i = 0; i < dataR.length; i++) {
+                          // Find the name of the region in csv file
+                          var dataStateR = dataR[i].region;
+                          //console.log("DataState : " + dataState )
+                          for (var j = 0; j< jsonR.features.length; j++){
+                            // Find the name of the region in json file
+                            var jsonStateR = jsonR.features[j].properties.nom;//
+                            if (dataStateR == jsonStateR) {
+                              jsonR.features[j].properties.tab =  Object.values(dataR[i]);
+                              //console.log(json.features[j].properties.tab);
+                              //stop because result found
+                               break;
+                            }
+                          }
+                        }
+                         
+                 
+                        svgR.selectAll("path")
+                          .data(jsonR.features)
+                          .enter()
+                          .append("path")
+                          .attr("d", path);
+                        
+                        jsonFR = jsonR; 
+                        drawMapR(currentMonthR, currentYearR);  
+                        }); // End of "regions.json"
+                      
+                      //update elements 
+                      function updateVizR(val){
+                        d3.select('#monthR').html(listMonthsR[val-1]);
+                        drawMapR(currentMonthR, currentYearR); 
+                      };
+                      
+                      function updateViz2R(valY){
+                        d3.select('#yearR').html(listYearsR[valY-1]);
+                        drawMapR(currentMonthR, currentYearR); 
+                      };
+                           
+                      // Draw the map
+                      function drawMapR(monthBisR, yearBisR){
+                        var nbrR;
+                        var pasR;
+                        var minR = 0, maxR=0;
+                        var currentDateR = 12*(yearBisR-1)+monthBisR ;
+                        //fevrier 2017 => 2017 = 5 fevrier 2 ====> 12*(yearBis-1)+monthBis
+                        // console.log("cu rrentDate ==========> " + currentDate);
+                        
+                        //Set input domain for color scale
+                          color.domain([minG,maxG]);
+                        
+                        
+                        carteR = svgR.selectAll("path")
+                           .data(jsonFR.features);
+                        carteR
+                          .on('mousemove', function(d) {
+                              if(d.properties.tab == undefined || d.properties.tab == "NaN"){
+                                  nbrR = "undefined";
+                              }else { 
+                                  nbrR = d.properties.tab[currentDateR]; 
+                                }
+                              var mouse = d3.mouse(svgR.node()).map(function(d) {
+                                 return parseInt(d);
+                              });
+                          
+                              tooltipR.classed('hiddenR', false)
+                                     .attr('style', 'left:' + (mouse[0] + 15) +
+                                             'px; top:' + (mouse[1] - 35) + 'px')
+                                     .html(d.properties.nom + ":" + parseFloat(nbrR).toFixed(2)+ " %");
+                                      
+                              })
+                          .on('mouseout', function() {
+                              tooltipR.classed('hiddenR', true);
+                              });
+                        
+                        //code in case of update of the map / change of month 
+                        carteR 
+                         .attr('class', function(d) {
+                                return 'provinceR ' + d.properties.code;
+                             })
+                         .attr('d', path)
+                         .style("fill", function(d) {
+                                // get value found above
+                                var tabR = d.properties.tab;
+                                if (tabR && tabR[currentDateR] != "") {
+                                  // console.log("tabbbbb ==>" + tab[currentDate]);
+                                    return color(tabR[currentDateR]);
+                                } else { 
+                                    // if no value then color with Grey
+                                    return "#ccc";
+                                }
+                                
+                                
+                            });
+                        
+                        //fist time of coloring the map
+                        carteR.selectAll("path")
+                            .enter()
+                            .data(jsonFR.features)
+                            .append("path")
+                            .attr("class", "enter")
+                            .attr("d", path)
+                            .style("fill", function(d) {
+                                  // get value found above
+                                  var tabR = d.properties.tab;
+                                  // console.log("tabbbb ==>" + tab[currentDate]);
+                                  if (tabR && tabR[currentDateR] != "") {  
+                                      return color(tabR[currentDateR]);
+                                  } else { 
+                                      // if no value then color with Grey 
+                                      return "#ccc";
+                                  }
+                              });
+                        
+                      }; // End of drawMap//
+                     
+                   }); // End of "d3.csv..
+
+                </script> 
+
+                
+                    <div class="col-lg-8 mx-auto text-center"">
+                         <a class="btn btn-primary btn-xl js-scroll-trigger" href="#Tendances">Tendances</a>
+                    </div>
+                     
+    </section>
+  <!-- ********************************************** END second_vizu ********************************************** -->
+    <section id="Tendances"> 
+      <div >
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading">Pourcentage de retards de trains en France entre 2013 et 2017</h2>
+            <h4 >Survolez pour explorer / Cliquez pour comparer</h4>
+            <hr class="my-4">
+            <p class="text-center">Analyse les tendances de retards par rapport à la moyenne nationale ou entre plusieurs régions en cliquant dessus :)</p>
+                        <div style="margin-left:600px;">
+                            <form>
+                                <label><input type="radio" name="all" id="all" value="Tous"> Tout</label>
+                                <label><input type="radio" name="all" id="all" value="Choisir"> Choisir</label>
+                             </form>  
+                         </div>
+                 <div class="col-8">
+                        
+                     <div class="svg3">
+
+                     </div>
+                 </div>                
+            
+            
+              <!-- ********************************************** BEGIN third_vizu ********************************************** -->
+                
+                  <script>
+                 
+                  d3.select("input[value=\"Choisir\"]").property("checked", true); 
+                  var margin = {top: 20, right: 30, bottom: 20, left: 100},
+                      width = 760 ,//- margin.left - margin.right,
+                      height = 300;// - margin.top - margin.bottom ;
+                    
+                  var svg3 = d3.select("body").selectAll("div.svg3").append("svg")
+                      .attr("width", width + margin.left + margin.right+100)
+                      .attr("height", height + margin.top + margin.bottom+100)
+                      .append("g")
+                      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+                 // var parseDate = d3.timeParse("%y");
+
+                  var x = d3.scaleTime().range([0, width-100-margin.left]),
+                      y = d3.scaleLinear().range([height, 0]),
+                      c = d3.scaleOrdinal(d3.schemeCategory20);
+
+                  var line = d3.line()
+                    .curve(d3.curveLinear)
+                    .x(function(d) { return x(d.date); })
+                    .y(function(d) { return y(d.moy); });
+                    
+                  d3.text('dataCSV.csv', function(error, raw) {
+
+                    var dsv = d3.dsvFormat(',')
+                    var data = dsv.parse(raw);
+                    
+                    // Nest stock values by symbol.
+                    var symbols = d3.nest()
+                        .key(function(d) { return d.region; })
+                        .entries(data);
+
+                    // Parse and caculate some values for each symbols
+                    symbols.forEach(function(s) {
+                      s.values.forEach(function(d) { 
+                        d.date = d.date; 
+                        d.moy = d.moy; 
+                      });
+                      
+                      s.maxMoy = d3.max(s.values, function(d) { return d.moy; });
+                      
+                      
+                    });
+                    
+                   //console.log(symbols);
+                       
+                    x.domain(d3.extent(data, function(d) { return d.date; }));
+                var maxy;
+                    y.domain([0, maxy=d3.max(symbols.map(function(d) { return parseFloat(d.maxMoy); }))])
+                  //console.log("MAXY : "+maxy);
+                    // ADDED 
+                    var legendSpace = height/symbols.length+2; // spacing for the legend
+
+                   symbols.forEach(function(d,i) {
+                     svg3.append("path")
+                        .attr("class", "line")
+                        .attr("id", 'tag'+d.key.replace(/\s+/g, '')) // assign an ID
+                        //.attr("id",function(d,i){ return "id" + i; })
+                        .attr("d", line(d.values))
+                        .style("stroke", c(d.key))
+                        .style("opacity", 0);
+                     console.log("REGION =====> "+d.key);
+                     // Add the Legend class="legendAdded"
+                        svg3.append("text")
+                            .attr("x",width-150)
+                            .attr("y",5+ i*legendSpace)  
+                            .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; })
+                            .attr("class", "legend")    // style the legend
+                            .attr("id", 'idText'+d.key.replace(/\s+/g, ''))
+                            .style("fill", function() { // Add the colours dynamically
+                                return d.color = c(d.key); })
+                            .on("click", function(){
+                                // Determine if current line is visible
+                               // console.log("d.ACTIVE AVANT : " + d.active);
+                                var active = d.active ? false : true,
+                                newOpacity = active ? 1 : 0; 
+                              //console.log("d.ACTIVE APRES : " + d.active);
+                                // Hide or show the elements based on the ID
+                                d3.select("#tag"+d.key.replace(/\s+/g, ''))
+                                    .transition().duration(100) 
+                                    .style("opacity", newOpacity); 
+                                // Update whether or not the elements are active
+                                d.active = active;
+                                if(active){
+                                  //'idText'+d.key.replace(/\s+/g, '')
+                                  d3.select("#idText"+d.key.replace(/\s+/g, ''))
+                                        .style("Font-Weight","Bold")
+                                        .style("font-size", "20px");
+                                }else{
+                                  d3.select("#idText"+d.key.replace(/\s+/g, ''))
+                                        .style("Font-Weight","Normal")
+                                        .style("font-size", "16px");
+                                  
+                                }
+                              })  
+                            .text(d.key)
+                            .style("font-size", "16px")
+                            .on("mouseover",function() { 
+                                d3.select("#tag"+d.key.replace(/\s+/g, '')).style("opacity",1);
+                                d3.select("#idText"+d.key.replace(/\s+/g, ''))
+                                  .style("text-decoration","underline")
+                                  .style("Font-Weight","Bold")
+                                  .style("font-size", "20px");
+                               })
+
+                           .on("mouseout", function() {
+                            if(d.active != true) {
+                                d3.selectAll("#tag"+d.key.replace(/\s+/g, ''))
+                                  .transition()
+                                  .style("opacity", 0)
+                                d3.select(this)
+                                  .transition()
+                                  .duration(1000)
+                                  };
+                             d3.select("#idText"+d.key.replace(/\s+/g, ''))
+                                  .style("text-decoration","none");
+                              if(!d.active){
+                                 d3.select("#idText"+d.key.replace(/\s+/g, ''))          
+                                  .style("Font-Weight","Normal")
+                                  .style("font-size", "16px"); 
+                              } 
+                        });
+
+                      var valCurrentViz = "Choisir"; 
+                       
+                          d3.selectAll("#all")
+                          .on("change", selectDataset);
+                              
+                            function selectDataset()
+                            {
+                              valCurrentViz = this.value;
+                              if (valCurrentViz == "Tous")
+                              {
+                                 d3.selectAll(".legend")
+                                      .style("Font-Weight","Bold")
+                                      .style("font-size", "20px");
+                                 d3.selectAll(".line")
+                                      .style("opacity",1);
+                              }
+                              else
+                              {
+                                d3.selectAll(".legend")
+                                      .style("Font-Weight","Normal")
+                                      .style("font-size", "16px");
+                                 d3.selectAll(".line")
+                                      .style("opacity",0);
+                              }
+                            } 
+
+
+                     
+
+                   });
+                    
+                   // Add axis X
+                   svg3.append("g")
+                        .attr("class", "axis axis--x")
+                        .attr("transform", "translate(0," + height + ")")
+                        .call(d3.axisBottom(x));
+                   // text label for the x axis
+                   svg3.append("text")             
+                      .attr("transform",
+                            "translate(" + (width/2) + " ," + 
+                                           (height -20) + ")")
+                      .style("text-anchor", "middle")
+                      .text("Date")
+                      .style("font-size", "15px")
+                      .style("Font-Weight","Bold"); 
+                    
+                  // Add axis Y
+                   svg3.append("g")
+                       .attr("class", "axis axis--y")
+                       .call(d3.axisLeft(y).ticks(20));
+                  // text label for the y axis
+                  svg3.append("text")
+                      .attr("transform", "rotate(-90)")
+                      .attr("y", 0 - 50)
+                      .attr("x",0 - (height / 2))
+                      .attr("dy", "1em")
+                      .style("text-anchor", "middle")
+                      .text("Pourcentage de retard en (%)")
+                      .style("font-size", "15px")
+                      .style("Font-Weight","Bold");    
+                    
+                 
+                  });
+                   
+                  </script>
+              
+
+
+              <!-- ********************************************** END third-Vizu **********************************************-->
+          </div>
+      </div>
+    </section >
+
+    <section id="services">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Conclusion</h2>
+            <hr class="my-4">
+            
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row " style="margin-left:110px;">
+          <img src="./img/giffy.gif" width="960" height="500">
+        </div>
+      </div>
+    </section>
+
+ 
+    <section id="contact" style="padding:8rem 0;"> 
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading">Entrons en contact!</h2>
+            <hr class="my-4">
+            <p class="mb-5"> Voulez-vous voir les détails de ce projet?  <br> Avez-vous des questions? <br> Visitez notre GitHub ou envoyez-nous un e-mail et nous reviendrons vers vous dès que possible! </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 ml-auto text-center">
+            <i class="fa fa-github fa-3x mb-3"></i>
+            <p>
+              <a href="https://github.com/NaamaNaa/">Ballota</a>
+            </p>
+            <p>
+              <a href="https://github.com/AminaSGitHub/">AminaSGitHub</a>
+            </p>
+            <p>
+              <a href="https://gist.github.com/ibtimoussi">ibtimoussi</a>
+            </p>
+          </div>
+          <div class="col-lg-4 mr-auto text-center">
+            <i class="fa fa-envelope-o fa-3x mb-3 sr-contact"></i>
+            <p>
+              <a href="mailto:naama.hamizi@gmail.com">naama.hamizi@gmail.com</a>
+            </p>
+            <p>
+              <a href="mailto:amina.meziani@outlook.fr">amina.meziani@outlook.fr</a>
+            </p>
+            <p>
+              <a href="mailto:ibticem.moussi@gmail.com">ibticem.moussi@gmail.com</a>
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/creative.min.js"></script>
 
   </body>
-  <!-- END BODY -->
-</head>
+
 </html>
